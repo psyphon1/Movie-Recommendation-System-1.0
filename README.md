@@ -38,16 +38,16 @@ The system combines genres, keywords, tagline, cast, and director into a single 
 ## 🚀 How To Run It
 
 1. **Clone the repo**
-   bash
+   ```bash
    git clone https://github.com/psyphon1/Movie-Recommendation-System-1.0.git
    cd Movie-Recommendation-System-1.0
-
+   ```
 
 2. **Install dependencies**
 
-   
+    ```bash
    pip install -r requirements.txt
-
+   ```
 
 3. **Launch Jupyter Notebook**
 
