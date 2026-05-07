@@ -183,16 +183,48 @@ Ensure that `movies.csv` exists in the repo root and includes these columns:
 
 ---
 
-## 📄 License
+---
 
-MIT License. Fork it. Remix it. Use it. Just don’t resell it without flipping the code.
+## 👨‍💻 About the Developer
+
+### Chinmay Duse (psyphon1)
+
+**Full Stack AI Engineer | Machine Learning Enthusiast**
+
+- **GitHub**: [github.com/psyphon1](https://github.com/psyphon1)
+- **LinkedIn**: [linkedin.com/in/chinmayduse](https://www.linkedin.com/in/chinmayduse)
+- **Project Repository**: [Movie-Recommendation-System-1.0](https://github.com/psyphon1/Movie-Recommendation-System-1.0)
+- **Email**: chinmaydusey@gmail.com
+
+This project demonstrates expertise in:
+- **Machine Learning**: TF-IDF vectorization, cosine similarity, content-based filtering
+- **Backend Development**: Flask, REST APIs, Python
+- **Frontend Development**: HTML5, CSS3, JavaScript ES6+, responsive design
+- **Data Science**: pandas, NumPy, feature engineering
+- **RAG Implementation**: Retrieval-Augmented Generation concepts (learned 13/07/2025)
+- **Deployment**: Vercel, GitHub, production-ready configurations
 
 ---
 
-## 🙌 Created by [psyphon1](https://github.com/psyphon1)
+## 📄 License
 
-Version 1.0. Future releases may feature a Streamlit/Flask UI and hybrid recommendation models.
+MIT License. Fork it. Remix it. Use it. Just don't resell it without flipping the code.
+
+---
+
+## 🙌 Project Info
+
+**Version**: 1.0  
+**Created by**: [Chinmay Duse](https://github.com/psyphon1) (psyphon1)  
+**Learning Date**: 13/07/2025 (RAG Implementation)  
+**Repository**: https://github.com/psyphon1/Movie-Recommendation-System-1.0
+
+Future releases may feature:
+- Streamlit/Flask interactive dashboards
+- Hybrid recommendation models (collaborative + content-based)
+- User authentication and personalization
+- Advanced caching and optimization
+
+---
 
 *Made with code, caffeine & cosmic movie vibes ☕🚀*
-
-```
