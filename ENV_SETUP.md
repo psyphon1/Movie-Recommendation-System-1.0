@@ -12,17 +12,19 @@ FLASK_DEBUG=1
 
 ## Production (Vercel)
 
-When deploying to Vercel, set environment variables in the dashboard:
+⚠️ **Important**: Set environment variables in the Vercel Dashboard, NOT in vercel.json
+
+When deploying to Vercel:
 
 1. Go to your Vercel project
 2. Click **Settings → Environment Variables**
-3. Add the following:
+3. Add the following variables:
 
-| Variable | Value | Purpose |
-|----------|-------|---------|
-| `FLASK_ENV` | `production` | Production mode |
-| `SECRET_KEY` | `your-secure-random-key-here` | Flask session security |
-| `FLASK_DEBUG` | `0` | Disable debug mode |
+| Variable | Value | Production | Preview | Development |
+|----------|-------|------------|---------|-------------|
+| `FLASK_ENV` | `production` | ✅ | ✅ | |
+| `SECRET_KEY` | `your-secure-random-key` | ✅ | ✅ | |
+| `FLASK_DEBUG` | `0` | ✅ | ✅ | |
 
 ### Generate a Secure SECRET_KEY
 
@@ -44,7 +46,7 @@ Use: https://generate-secret.vercel.app/
 
 - **FLASK_ENV**: Set to `development` or `production`
 - **SECRET_KEY**: Random string for session encryption (min 32 chars)
-- **FLASK_DEBUG**: Set to `1` for debugging, `0` for production
+- **FLASK_DEBUG**: Set to `1` for debugging locally, `0` for production
 
 ## Loading Environment Variables
 
@@ -73,6 +75,23 @@ The `.env` file is already in `.gitignore` to prevent accidental commits.
 
 Use `.env.example` as a template for team members.
 
+## Vercel Deployment Steps
+
+1. **Push to GitHub** (already done)
+2. **Connect to Vercel**:
+   - Go to https://vercel.com/new
+   - Import your GitHub repo: `psyphon1/Movie-Recommendation-System-1.0`
+   - Click "Deploy"
+3. **Set Environment Variables**:
+   - After deployment, go to **Settings → Environment Variables**
+   - Add `FLASK_ENV=production`
+   - Add `SECRET_KEY=your-secure-key-here`
+   - Add `FLASK_DEBUG=0`
+4. **Redeploy** (if needed):
+   - Go to Deployments
+   - Click "Redeploy" on the latest deployment
+
 ---
 
 For more information, see [DEPLOYMENT.md](DEPLOYMENT.md)
+

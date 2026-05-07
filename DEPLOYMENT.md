@@ -7,24 +7,12 @@
 - [Git](https://git-scm.com/) installed
 - [GitHub Account](https://github.com/)
 
-### Step 1: Push to GitHub
+### Step 1: Verify GitHub Push
 
 ```bash
-# Initialize git (if not already done)
-git init
-
-# Add all files
-git add .
-
-# Commit
-git commit -m "Initial commit: Movie Recommendation System with web UI"
-
-# Add remote (replace USERNAME with your GitHub username)
-git remote add origin https://github.com/psyphon1/Movie-Recommendation-System-1.0.git
-
-# Push to GitHub
-git branch -M main
-git push -u origin main
+# Check if all changes are pushed
+git status  # Should show "nothing to commit"
+git log --oneline  # Should show your recent commits
 ```
 
 ### Step 2: Deploy to Vercel
@@ -42,34 +30,56 @@ vercel login
 vercel
 ```
 
-#### Option B: Using Vercel Web Dashboard
+#### Option B: Using Vercel Web Dashboard (Recommended)
 
 1. Go to [https://vercel.com/new](https://vercel.com/new)
-2. Import your GitHub repository: `psyphon1/Movie-Recommendation-System-1.0`
-3. Vercel will auto-detect it's a Python/Flask project
-4. Click "Deploy"
-5. Wait for deployment to complete
-6. Your app will be live at `https://your-project-name.vercel.app`
+2. Click **"Import Git Repository"**
+3. Connect your GitHub account if needed
+4. Select repository: `psyphon1/Movie-Recommendation-System-1.0`
+5. Click **"Import"**
+6. Vercel will auto-detect it's a Python/Flask project
+7. Click **"Deploy"**
 
-### Step 3: Verify Deployment
+### Step 3: Set Environment Variables
+
+⚠️ **Important**: Environment variables must be set AFTER deployment in Vercel Dashboard
+
+1. After deployment completes, go to your Vercel project
+2. Click **Settings** → **Environment Variables**
+3. Add these variables:
+
+```
+FLASK_ENV = production
+FLASK_DEBUG = 0
+SECRET_KEY = your-secure-key-here
+```
+
+**To generate a secure SECRET_KEY:**
+```bash
+openssl rand -hex 32
+```
+
+4. After adding variables, click **Deployments** → **Redeploy** on the latest deployment
+
+### Step 4: Verify Deployment
 
 Visit your Vercel URL and test:
 - Search for a movie
 - Check recommendations
 - Try dark mode
-- Test responsiveness
+- Test responsiveness on mobile
+
+Your app URL will be: `https://your-project-name.vercel.app`
 
 ---
 
-## Environment Variables (if needed)
+## Environment Variables
 
-If you need to set environment variables on Vercel:
-
-1. Go to **Settings → Environment Variables**
-2. Add:
-   ```
-   FLASK_ENV=production
-   ```
+| Variable | Value | Where to Set |
+|----------|-------|--------------|
+| `FLASK_ENV` | `production` | Vercel Dashboard |
+| `FLASK_DEBUG` | `0` | Vercel Dashboard |
+| `SECRET_KEY` | Random 32-char string | Vercel Dashboard |
 
 ---
 
@@ -77,29 +87,38 @@ If you need to set environment variables on Vercel:
 
 ### Issue: `movies.csv` not found
 
-**Solution**: The CSV file needs to be in the root directory of your repository. Verify:
+**Solution**: The CSV file needs to be in the root directory of your repository.
+
 ```bash
 ls movies.csv  # Should show the file
 ```
 
 ### Issue: Dependencies not installing
 
-**Solution**: Check `requirements.txt` has correct packages:
+**Check `requirements.txt`:**
 ```bash
 Flask==3.0.0
 pandas==2.0.0
 numpy==1.24.0
 scikit-learn==1.2.0
 Werkzeug==3.0.0
+python-dotenv==1.0.0
 ```
 
 ### Issue: Application crashes on Vercel
 
 **Solution**: Check logs in Vercel dashboard:
 1. Go to your Vercel project
-2. Click "Deployments"
+2. Click **Deployments**
 3. Click the failed deployment
-4. Check "Logs" for error messages
+4. Check **Logs** tab for error messages
+
+### Issue: Environment variables not loaded
+
+**Solution**: Make sure variables are set in Vercel Dashboard **BEFORE** redeploying:
+1. Go to **Settings → Environment Variables**
+2. Verify all 3 variables are present
+3. Click **Redeploy** on latest deployment
 
 ---
 
@@ -110,31 +129,36 @@ Werkzeug==3.0.0
 python app.py
 
 # Visit http://localhost:5000
-# Test all features
+# Test all features thoroughly
 
 # Then commit and push to GitHub
 git add .
-git commit -m "Test and verified all features"
+git commit -m "Final testing complete"
 git push origin main
+
+# Then deploy to Vercel
 ```
 
 ---
 
 ## GitHub Repository Structure
 
-Your GitHub should have:
+Your GitHub repo should have:
 ```
 Movie-Recommendation-System-1.0/
-├── app.py
-├── config.py
-├── requirements.txt
-├── vercel.json
-├── .gitignore
-├── README.md
-├── movies.csv
-├── main.ipynb
+├── .env                 (Not committed - in .gitignore)
+├── .env.example         (Shared template)
+├── .gitignore          (Prevents committing .env)
+├── app.py              (Flask app)
+├── config.py           (Configuration)
+├── requirements.txt    (Dependencies)
+├── vercel.json         (Vercel config)
+├── ENV_SETUP.md        (Environment guide)
+├── README.md           (Project info)
+├── movies.csv          (Dataset)
+├── main.ipynb          (Jupyter notebook)
 ├── templates/
-│   └── index.html
+│   └── index.html      (Frontend)
 └── static/
     ├── css/
     │   └── style.css
@@ -144,33 +168,20 @@ Movie-Recommendation-System-1.0/
 
 ---
 
-## Performance Optimization for Vercel
-
-### Current Setup
-- ✅ Cold start optimized
-- ✅ Lightweight dependencies
-- ✅ Efficient data loading
-
-### If Needed (Advanced)
-- Add caching headers in Flask
-- Implement Redis caching
-- Use CDN for static files
-
----
-
 ## Continuous Deployment
 
 With GitHub connected to Vercel:
+
 1. Every push to `main` branch auto-deploys
 2. Failed builds prevent deployment
 3. View deployment history in Vercel dashboard
 
-### Example Workflow
+### Workflow
 ```bash
 # Make changes locally
 nano app.py
 
-# Test
+# Test locally
 python app.py
 
 # Commit and push
@@ -186,10 +197,11 @@ git push origin main
 ## Custom Domain (Optional)
 
 To add your own domain to Vercel:
+
 1. In Vercel dashboard, go to **Settings → Domains**
 2. Add your domain
 3. Update DNS records as instructed
-4. Wait for verification
+4. Wait for verification (usually 5-15 minutes)
 
 ---
 
@@ -207,12 +219,42 @@ Access in Vercel dashboard → **Analytics**
 
 ## Rollback (if deployment fails)
 
-```bash
-# In Vercel dashboard:
-# 1. Go to Deployments
-# 2. Click previous successful deployment
-# 3. Click "Rollback to this Deployment"
 ```
+In Vercel dashboard:
+1. Go to Deployments
+2. Click previous successful deployment
+3. Click "Redeploy to Production"
+```
+
+---
+
+## Performance Monitoring
+
+Check performance metrics:
+- Vercel Analytics dashboard
+- Response times for API endpoints
+- Cold start times
+- CPU/Memory usage
+
+---
+
+## Scaling & Optimization
+
+If you need to scale:
+- Add Redis for caching
+- Implement API rate limiting
+- Use CDN for static files
+- Consider upgrading Vercel plan
+
+---
+
+## Security Best Practices
+
+✅ Never commit `.env` to GitHub
+✅ Use strong SECRET_KEY (32+ characters)
+✅ Set FLASK_DEBUG=0 in production
+✅ Rotate SECRET_KEY periodically
+✅ Use HTTPS (Vercel provides automatically)
 
 ---
 
@@ -221,7 +263,8 @@ Access in Vercel dashboard → **Analytics**
 - **Vercel Docs**: https://vercel.com/docs
 - **Flask Docs**: https://flask.palletsprojects.com/
 - **GitHub Docs**: https://docs.github.com/
+- **ENV Setup**: See [ENV_SETUP.md](ENV_SETUP.md)
 
 ---
 
-**You're now ready to deploy to production!** 🚀
+**Your app is ready for production deployment!** 🚀
