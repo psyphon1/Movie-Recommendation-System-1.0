@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 MovieMatch - AI-Powered Movie Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <i class="fas fa-film"></i>
+                <span>MovieMatch</span>
+            </div>
+            <div class="navbar-menu">
+                <a href="#" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Find Your Next <span class="gradient-text">Favorite Movie</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Discover movies that match your taste with AI-powered recommendations
+                </p>
+                
+                <!-- Search Bar -->
+                <div class="search-section">
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <input 
+                                type="text" 
+                                id="movieInput" 
+                                class="search-input" 
+                                placeholder="Enter a movie name... e.g., Inception, The Matrix"
+                                autocomplete="off"
+                            >
+                            <div id="autocomplete-list" class="autocomplete-list"></div>
+                            <button class="search-btn" id="searchBtn">
+                                <i class="fas fa-search"></i>
+                                <span>Search</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Finding perfect matches...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="error-message" style="display: none;">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="errorText"></span>
+        <button class="close-error"><i class="fas fa-times"></i></button>
+    </div>
+
+    <!-- Searched Movie Info -->
+    <div id="searchedMovieInfo" class="searched-movie-section" style="display: none;">
+        <div class="container">
+            <div class="searched-movie-card">
+                <div class="searched-movie-header">
+                    <h2>You searched for:</h2>
+                    <h1 id="searchedMovieTitle"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendations Section -->
+    <section id="recommendationsSection" class="recommendations-section" style="display: none;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-sparkles"></i>
+                    Recommended For You
+                </h2>
+                <p class="section-subtitle">Movies you might love based on your search</p>
+            </div>
+
+            <div id="recommendationsGrid" class="recommendations-grid">
+                <!-- Movie cards will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose MovieMatch?</h2>
+                <p class="section-subtitle">Intelligent recommendations powered by advanced algorithms</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered</h3>
+                    <p>Content-based filtering using TF-IDF and cosine similarity for smart recommendations</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Get instant recommendations in seconds with our optimized algorithm</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Huge Database</h3>
+                    <p>Access thousands of movies with comprehensive metadata and details</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Similarity Scores</h3>
+                    <p>See confidence scores for each recommendation to make informed choices</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Fully Responsive</h3>
+                    <p>Works seamlessly on desktop, tablet, and mobile devices</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Beautiful UI</h3>
+                    <p>Modern, intuitive interface with dark and light mode support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>About MovieMatch</h2>
+                <p>MovieMatch is an intelligent movie recommendation system built with cutting-edge AI technology. We analyze movie metadata including genres, keywords, cast, and director information to find movies that match your taste perfectly.</p>
+                <p>Whether you're looking for action-packed thrillers, heartwarming dramas, or mind-bending sci-fi films, MovieMatch has you covered.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 MovieMatch. Built with <i class="fas fa-heart"></i> for movie lovers.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Movie Details -->
+    <div id="movieModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <h2 id="modalTitle"></h2>
+                <div class="modal-details">
+                    <div class="detail-group">
+                        <label>Genres:</label>
+                        <p id="modalGenres"></p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Director:</label>
+                        <p id="modalDirector"></p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Cast:</label>
+                        <p id="modalCast"></p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Tagline:</label>
+                        <p id="modalTagline"></p>
+                    </div>
+                    <div class="detail-group">
+                        <label>Overview:</label>
+                        <p id="modalOverview"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

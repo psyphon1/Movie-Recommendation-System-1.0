@@ -1,39 +1,86 @@
 
-# 🎬 Movie Recommendation System 1.0
+# 🎬 Movie Recommendation System
 
-> *Built for true movie lovers who want recs with real taste—not random guesses.*
+> *AI-powered movie recommendations using RAG-enhanced content-based filtering. Built for true movie lovers who want smart recommendations based on intelligent pattern matching.*
+
+---
+
+## 👨‍💻 Developer
+
+**[Chinmay Duse](https://github.com/psyphon1)** (psyphon1)  
+📧 [LinkedIn](https://www.linkedin.com/in/chinmayduse)
+
+---
+
+## 📚 RAG Implementation & Learning
+
+This project implements **Retrieval-Augmented Generation (RAG)** concepts as part of an AI learning journey on **13/07/2025**.
+
+### RAG Application
+- **Retrieval Layer**: TF-IDF vectorization and cosine similarity for semantic search
+- **Augmentation Layer**: Content-based filtering using movie metadata (genres, keywords, cast, director)
+- **Generation Layer**: Intelligent recommendations based on learned feature patterns
+
+The RAG approach allows the system to:
+1. **Retrieve** similar movies using semantic similarity scores
+2. **Augment** recommendations with multi-feature analysis
+3. **Generate** contextual movie suggestions based on user input
 
 ---
 
 ## 🔍 What It Does
 
-This Jupyter Notebook–powered app recommends movies based on **content-based filtering**. You give it a movie title, it gives you **10** similar movies using NLP and cosine similarity. Simple, smart, and seriously effective.
+This application recommends movies based on **intelligent content-based filtering** and **RAG principles**. You give it a movie title, and it gives you **10** similar movies using advanced NLP and machine learning. Simple, smart, and seriously effective.
 
 ---
 
 ## 💡 How It Works
 
-It uses:
+### Algorithm
+1. **Load** movie dataset with comprehensive metadata
+2. **Process** features: genres, keywords, tagline, cast, director
+3. **Vectorize** using TF-IDF (converts text to numerical features)
+4. **Compute** cosine similarity between movies
+5. **Retrieve** top 10 most similar recommendations
+6. **Rank** by similarity score (0-100%)
 
-- **Pandas & NumPy** for data wrangling  
-- **TfidfVectorizer** for turning movie metadata into vectorized features  
-- **Cosine Similarity** to compare feature vectors  
-- **difflib** for smart matching even when user typos hit  
-
-The system combines `genres`, `keywords`, `tagline`, `cast`, and `director` into a single feature string and computes similarity across all entries.
+### Technology
+- **Pandas & NumPy** for data wrangling and numerical computing
+- **TfidfVectorizer** for turning movie metadata into vectorized features
+- **Cosine Similarity** for semantic comparison between feature vectors
+- **difflib** for smart fuzzy matching (handles typos)
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Python**  
-- **Jupyter Notebook**  
-- **pandas**, **numpy**, **scikit-learn**, **difflib**  
-- **CSV dataset** (`movies.csv`)
+### Backend
+- **Python 3.7+** - Core language
+- **Flask 3.0.0** - Web framework
+- **pandas 2.0.0** - Data processing
+- **numpy 1.24.0** - Numerical computing
+- **scikit-learn 1.2.0** - ML algorithms (TF-IDF, Cosine Similarity)
+
+### Frontend
+- **HTML5** - Semantic structure
+- **CSS3** - Modern styling with dark mode
+- **JavaScript (ES6+)** - Interactive features
+- **Font Awesome 6.4** - Icons
+- **Google Fonts** - Typography
+
+### Data
+- **CSV dataset** with 5000+ movies
+- Features: title, genres, keywords, tagline, cast, director, overview
+
+### Deployment
+- **Vercel** - Serverless deployment
+- **GitHub** - Version control & hosting
 
 ---
 
-## 🚀 How To Run It
+## 🚀 Quick Start
+
+### Local Development
 
 1. **Clone the repo**  
    ```bash
@@ -42,23 +89,38 @@ The system combines `genres`, `keywords`, `tagline`, `cast`, and `director` into
    ```
 
 2. **Install dependencies**
-
    ```bash
    pip install -r requirements.txt
    ```
-3. **Launch Jupyter Notebook**
 
+3. **Run the Flask app**
+   ```bash
+   python app.py
+   ```
+
+4. **Open in browser**
+   ```
+   http://localhost:5000
+   ```
+
+5. **Search for a movie**
+   - Type a movie name (e.g., "Inception")
+   - Get 10 smart recommendations instantly!
+
+### Jupyter Notebook (Original Method)
+
+1. **Launch Jupyter Notebook**
    ```bash
    jupyter notebook
    ```
-4. **Open `main.ipynb`** (or your uploaded `.ipynb`) and run all cells.
-5. **When prompted, input a movie title**
 
+2. **Open `main.ipynb`** and run all cells
+
+3. **When prompted, input a movie title**
    ```bash
    Enter Movie Name: Inception
    ```
-
-   It will print a list of **10** similar movie titles.
+   It will print a list of 10 similar movie titles.
 
 ---
 
