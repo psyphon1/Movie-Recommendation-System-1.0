@@ -15,6 +15,9 @@
   "env": {
     "FLASK_ENV": {
       "default": "production"
+    },
+    "FLASK_DEBUG": {
+      "default": "0"
     }
   }
 }

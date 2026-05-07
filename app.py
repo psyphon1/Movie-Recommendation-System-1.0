@@ -6,8 +6,17 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
+
+# Configure Flask app
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+app.config['ENV'] = os.environ.get('FLASK_ENV', 'development')
+app.config['DEBUG'] = os.environ.get('FLASK_DEBUG', False)
 
 # Load and prepare data
 csv_path = os.path.join(os.path.dirname(__file__), 'movies.csv')
